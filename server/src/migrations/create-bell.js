@@ -1,0 +1,46 @@
+'use strict';
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Bells', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      codebell: {
+        type: Sequelize.STRING
+      },
+      title: {
+        type: Sequelize.STRING
+      },
+      des: {
+        type: Sequelize.TEXT("long")
+      },
+      rolecode: {
+        type: Sequelize.STRING
+      },
+      codetype: {
+        type: Sequelize.STRING
+      },
+      active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+      },
+      createdAt: {
+        allowNull: false,
+        type: "TIMESTAMP",
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      },
+      updatedAt: {
+        allowNull: false,
+        type: "TIMESTAMP",
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      }
+    });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Bells');
+  }
+};

@@ -1,0 +1,357 @@
+### used
+POST http://localhost:5000/api/email/sendEmailRecieve
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+}
+
+###
+POST http://localhost:5000/api/email/sendOtpEmail
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+    "otp":"KVB1"
+}
+
+###
+POST http://localhost:5000/api/email/verify-email
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+    "otp":"KVB1",
+    "codeuser":"1"
+}
+
+### used
+POST http://localhost:5000/api/email/sendOtp-ResetPassword
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+    "otp":"KVB1"
+}
+
+###
+POST http://localhost:5000/api/email/sendEmailOrder
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+    "tableId":"4",
+    "day":"5/3/2026",
+    "number":"12",
+    "hour":"11:00 AM"
+}
+
+###
+POST http://localhost:5000/api/email/sendEmailMessage
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+    "message":"Cảm ơn nhé Kitty",
+    "id":4,
+    "name":"Kiên đây"
+}
+
+###
+POST http://localhost:5000/api/auth/login 
+Content-Type: application/json
+
+{
+    "phone":"0336099317",
+    "password":"1234567890"
+}
+
+###
+POST http://localhost:5000/api/auth/register 
+Content-Type: application/json
+
+{
+    "username":"Nguyễn Trung Thanh",
+    "password":"1234567890",
+    "phone":"0336099318",
+    "email":"nguyenkiencnttltv@gmail.com"
+}
+
+###
+PUT http://localhost:5000/api/auth/update-pass
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+    "password":"123456"
+}
+
+###
+PUT http://localhost:5000/api/user/update-account/EYUNQ976
+Content-Type: application/json
+
+{
+    "username": "Nguyễn Trung Kiên",
+    "phone": "0336099317",
+    "address": "", 
+    "email": "nguyenkiencnttltv@gmail.com"
+}
+
+###
+PUT http://localhost:5000/api/auth/update-email
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+    "phone":"0336099317"
+}
+
+###
+PUT http://localhost:5000/api/auth/update-avatar
+Content-Type: application/json
+
+{
+    "codeuser":"SZJ3SXAH",
+    "image":"avatar-demo"
+}
+
+###
+POST http://localhost:5000/api/user/add-contact
+Content-Type: application/json
+
+{
+    "name":"Nguyễn Trung Kiên",
+    "email":"nguyenkiencnttltv@gmail.com",
+    "des":"Tôi muốn liên hệ với bạn. Tối nay được không !"
+}
+
+
+###
+GET http://localhost:5000/api/user/gets-contact
+
+
+###
+DELETE http://localhost:5000/api/user/delete-contact/1
+
+
+###
+DELETE http://localhost:5000/api/user/deletes-contact
+
+###
+GET http://localhost:5000/api/auth/get-user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicGhvbmUiOiIwMzM2MDk5MzE3IiwiY29kZXVzZXIiOiJSWjROMzlXNyIsImlhdCI6MTc3NDUyNjQxOSwiZXhwIjoxNzc0Njk5MjE5fQ.KX_zCP6SanMQQaJgtK2Et7t7pawRkbjclRDjYFyQ8TI
+
+
+###
+GET http://localhost:5000/api/auth/get-user-to-role/R2
+
+###
+GET http://localhost:5000/api/count/accounts
+
+###
+GET http://localhost:5000/api/count/table-blank
+
+###
+GET http://localhost:5000/api/count/accounts-staff
+
+###
+GET http://localhost:5000/api/count/accounts-chef
+
+###
+GET http://localhost:5000/api/count/accounts-customer
+
+###
+GET http://localhost:5000/api/user/users
+
+###
+GET http://localhost:5000/api/log/logs
+
+###
+GET http://localhost:5000/api/log/floors
+
+###
+GET http://localhost:5000/api/log/hours
+
+###
+GET http://localhost:5000/api/log/floors-table/F01/20h
+
+###
+GET http://localhost:5000/api/log/floors-table/F02
+
+###
+GET http://localhost:5000/api/cate/get-categories
+
+###
+DELETE  http://localhost:5000/api/cate/delete-categories/YHHLG9HF
+
+###
+POST http://localhost:5000/api/cate/create-categories 
+Content-Type: application/json
+
+{
+    "name":"Đồ chiên",
+    "des":"Món chiên nổi tiếng và bán chạy nhất nhà hàng",
+    "active":true
+}
+
+###
+POST http://localhost:5000/api/food/create-food 
+Content-Type: application/json
+
+{
+    "name":"Sting Dâu",
+    "tag":"hot",
+    "price":"12.000.000 đ",
+    "image":"test",
+    "codecategories":"EKN3K5AF",
+    "note":"Mới nhất đang sale"
+}
+
+###
+PUT http://localhost:5000/api/food/update-food/QVYA4A5MP2 
+Content-Type: application/json
+
+{
+    "name":"Sting Dâu",
+    "tag":"hot",
+    "price":"120.000",
+    "image":"update sau",
+    "codecategories":"EKN3K5AF",
+    "note":"Mới nhất đang sale"
+}
+
+###
+GET http://localhost:5000/api/food/get-foods
+
+###
+GET http://localhost:5000/api/count/foods
+
+###
+DELETE http://localhost:5000/api/food/delete-food/Z2A92SDE6S
+
+###
+GET http://localhost:5000/api/condition/get-condition
+
+###
+GET http://localhost:5000/api/voucher/get-voucher
+
+###
+###
+POST http://localhost:5000/api/voucher/create-voucher 
+Content-Type: application/json
+
+{
+    "name":"VOUCHER2026",
+    "codecategories":"EKN3K5AF",
+    "codecondition":"100k",
+    "exprice":"12/12/2025", 
+    "sale":"10",
+    "style":"percent"
+}
+
+###
+POST http://localhost:5000/api/bank/create-bank
+Content-Type: application/json
+
+{
+    "codetable": "T05",
+    "codeorder": "SFH7LLC6NL4Z",
+    "codeuser": "98MN9R9E",
+    "total": "432000",
+    "method": "cash",
+    "status": "pending",
+    "date": "2026-04-05",
+    "hour": "17:30"
+}
+
+###
+GET http://localhost:5000/api/bank/get-bank-revue-chart
+
+###
+GET http://localhost:5000/api/auth/get-role
+
+###
+GET http://localhost:5000/api/voucher/get-voucher 
+
+###
+POST http://localhost:5000/api/bell/create-bell
+Content-Type: application/json
+
+{
+    "rolecode":"R4",
+    "title":"Thông báo mới 2",
+    "des":"Bạn có một thông báo mới cần xử lý"
+}
+
+###
+GET http://localhost:5000/api/bell/get-bell/R2
+
+###
+GET http://localhost:5000/api/bell/get-bell-to-user/CXUESCA3
+
+###
+GET http://localhost:5000/api/bell/get-bell-types
+
+###
+DELETE http://localhost:5000/api/bell/delete-bell/7UYAQ9N85B
+
+###
+GET http://localhost:5000/api/order/get-orders 
+
+
+###
+GET http://localhost:5000/api/bell/get-bell/R2
+
+###
+GET http://localhost:5000/api/order/order-table-hour/18h 
+
+###
+PUT http://localhost:5000/api/order/update-order-table-status/T09/18h 
+
+###
+GET http://localhost:5000/api/order/get-order-table
+###
+POST http://localhost:5000/api/order/create-order 
+Content-Type: application/json
+
+{
+    "codetable":"T05",
+    "codeuser":"98MN9R9E",
+    "note":"Đặt bàn online",
+    "items": [
+        {
+            "codefood": "BJMT94Q4H6",
+            "name": "Sting Dâu",
+            "price": "10.000 đ",
+            "quatify": 2,
+            "image": "https://res.cloudinary.com/dhb5ubvvy/image/upload/v1774707354/stingdau_md1feo.png"
+        },
+        {
+            "codefood": "5MUYN6A75Q",
+            "name": "Bia Tiger",
+            "price": "16.000 đ",
+            "quatify": 1,
+            "image": "https://res.cloudinary.com/dhb5ubvvy/image/upload/v1774717954/bia_sa9l0m.jpg"
+        },
+         {
+            "codefood": "HEBWPCCR85",
+            "name": "Bia Larue",
+            "price": "13.000 đ",
+            "quatify": 2,
+            "image": "https://res.cloudinary.com/dhb5ubvvy/image/upload/v1774717998/bialu_eeqsv9.jpg"
+        }
+    ]
+}
+
+###
+POST http://localhost:5000/api/order/create-order-table 
+Content-Type: application/json
+
+{
+    "email":"nguyenkiencnttltv@gmail.com",
+    "phone":"0336099317",
+    "codehour":"18h",
+    "date":"04/01/2026",
+    "guest":"2",
+    "codetable":"T05"
+}
