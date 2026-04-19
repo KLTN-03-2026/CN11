@@ -253,6 +253,20 @@ export interface TableType {
   };
 }
 
+export interface DataTable {
+  id: number;
+  codetable: string;
+  codefloor: string;
+  name: string;
+  url: string;
+  active: boolean;
+  createdAt: string;
+  updatedAt: string;
+  table_status: {
+    customer: number;
+  };
+}
+
 export interface DataTableType {
   id: number;
   codetable: string;

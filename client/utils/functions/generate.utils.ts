@@ -101,7 +101,7 @@ export const getCurrentWeekRange = (): {
   return { startOfWeek, endOfWeek };
 };
 
-const formatDateKey = (date: Date): string => {
+export const formatDateKey = (date: Date): string => {
   return date.toLocaleDateString("en-CA");
 };
 

@@ -42,9 +42,7 @@ class LogController {
 
     async getFloorsTableData(req, res) {
         try {
-
             const { id } = req.params;
-
             const responsive = await services.getFloorsTableData(id);
             return res.status(200).json(responsive);
         } catch (error) {

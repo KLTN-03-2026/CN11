@@ -355,3 +355,6 @@ Content-Type: application/json
     "guest":"2",
     "codetable":"T05"
 }
+
+###
+GET http://localhost:5000/api/count/order-today

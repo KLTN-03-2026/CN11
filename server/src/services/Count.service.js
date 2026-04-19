@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const db = require("../models");
 
 class CountServices {
@@ -117,6 +118,36 @@ class CountServices {
                     error: 0,
                     message: "Lấy thành công !",
                     data: responsive
+                })
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+
+    orderTodayCount() {
+        return new Promise(async (relsove, reject) => {
+            try {
+
+                const startOfDay = new Date();
+                startOfDay.setHours(0, 0, 0, 0);
+
+                const endOfDay = new Date();
+                endOfDay.setHours(23, 59, 59, 999);
+
+                const count = await db.OrderTable.count({
+                    where: {
+                        createdAt: {
+                            [Op.between]: [startOfDay, endOfDay],
+                        },
+                    },
+                });
+
+               
+                return relsove({
+                    error: 0,
+                    message: "Lấy thành công !",
+                    data: count
                 })
             } catch (error) {
                 reject(error);

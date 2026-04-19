@@ -7,7 +7,7 @@ import { FloorType, HourType, OrderTableStatusType, TableType } from "@/types/da
 import SendingEmailModal from "@/components/SendingEmailModal";
 import { useCart } from "@/app/context/CartContext";
 import { isNumber } from "@/utils/functions/generate.utils";
-
+import { formatDateKey } from "@/utils/functions/generate.utils";
 
 
 
@@ -20,7 +20,7 @@ export default function BookingPremium() {
     const [times, setTimes] = useState<HourType[]>([]);
     const [codeTableName, setCodeTableName] = useState<string>("");
     const [guest, setGuest] = useState<string>("2");
-    const [toDate, setToDate] = useState<string>("");
+    const [toDate, setToDate] = useState<Date>(new Date());
     const { messageApi } = useCart();
 
 
@@ -53,7 +53,7 @@ export default function BookingPremium() {
         callAPICount();
     }, [])
 
-   
+
 
     useEffect(() => {
         const callAPICount = async () => {
@@ -71,7 +71,7 @@ export default function BookingPremium() {
         }
 
         callAPICount();
-    }, [codefloor,selectedTime])
+    }, [codefloor, selectedTime])
 
 
 
@@ -113,7 +113,7 @@ export default function BookingPremium() {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ email, phone, codehour: selectedTime, date: toDate, guest, codetable: codeTableName })
+                    body: JSON.stringify({ email, phone, codehour: selectedTime, date: formatDateKey(toDate), guest, codetable: codeTableName })
                 }
             )
 
@@ -130,7 +130,7 @@ export default function BookingPremium() {
                 messageApi.success("Đã gửi thông tin đặt bàn tới nhà hàng. Cảm ơn bạn đã quan tâm !");
                 setTimeout(async () => {
                     setSelectedTime("18h");
-                    setToDate("");
+                    setToDate(new Date());
                     setGuest("2");
                     setEmail("");
                     setPhone("");
@@ -247,8 +247,8 @@ export default function BookingPremium() {
                                     <label className="text-sm text-gray-400">Ngày</label>
                                     <input
                                         type="date"
-                                        value={toDate}
-                                        onChange={e => setToDate(e.target.value)}
+                                        value={formatDateKey(toDate)}
+                                        onChange={e => setToDate(e.target.value ? new Date(e.target.value) : new Date())}
                                         className="w-full outline-none mt-2 p-3 rounded-xl text-white cursor-pointer bg-black/50 border border-white/10"
                                     />
                                 </div>

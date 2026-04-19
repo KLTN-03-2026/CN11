@@ -13,6 +13,7 @@ import {
   CreditCard,
   BellPlus,
 } from "lucide-react";
+import { BsPhone } from "react-icons/bs";
 import { Flame, CheckCircle, Clock, AlertCircle } from "lucide-react";
 import {
   ClipboardList,
@@ -27,6 +28,7 @@ import { BiMailSend } from "react-icons/bi";
 export const icons = {
   IoReload,
   LayoutDashboard,
+  BsPhone,
   Utensils,
   QrCode,
   Map,

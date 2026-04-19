@@ -1,5 +1,5 @@
 'use client';
-import { FloorType, TableType } from "@/types/data";
+import { DataTable, FloorType } from "@/types/data";
 import { useEffect, useState } from "react";
 
 
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export default function TableManager() {
 
     const [target, setTarget] = useState<string>("F01");
-    const [tables, setTables] = useState<TableType[]>([]);
+    const [tables, setTables] = useState<DataTable[]>([]);
     const [floors, setFloors] = useState<FloorType[]>([]);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ export default function TableManager() {
 
     const handleGetTable = (t: string) => {
         setTarget(t)
-        
+
         // const callAPI = async () => {
         //     const tablesAPI = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/log/floors-table/${t}`,
         //         { method: "GET" }
@@ -90,11 +90,11 @@ export default function TableManager() {
             </div>
             <div className="grid grid-cols-3 gap-4">
 
-                {tables?.map((table: TableType) => (
+                {tables?.map((table: DataTable,index:number) => (
                     <div
-                        key={table?.codetable}
+                        key={index}
                         className={`p-4 rounded-xl text-center
-${table?.table_status?.isorder
+${!table?.active
                                 ? "bg-red-500"
                                 : "bg-green-500"}
 `}
@@ -105,10 +105,7 @@ ${table?.table_status?.isorder
 
                     </div>
                 ))}
-
             </div>
-
         </div>
-
     )
 }

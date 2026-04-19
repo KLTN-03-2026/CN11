@@ -87,6 +87,18 @@ class CountController {
             })
         }
     }
+
+    async orderTodayCount(req, res) {
+        try {
+            const responsive = await services.orderTodayCount();
+            return res.status(200).json(responsive);
+        } catch (error) {
+            return res.status(500).json({
+                error: -1,
+                message: "Interal Server Error"
+            })
+        }
+    }
 }
 
 module.exports = new CountController();

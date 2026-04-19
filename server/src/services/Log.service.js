@@ -85,6 +85,11 @@ class LogService {
                 const responsive = await db.Table.findAll({
                     where: { codefloor },
                     order: [['id', 'ASC']],
+                    include: [
+                        { model: db.TableStatus, as: "table_status", attributes: ["customer"] },
+                    ],
+                    raw: true,
+                    nest: true
                 })
                 return relsove({
                     error: responsive ? 0 : 1,

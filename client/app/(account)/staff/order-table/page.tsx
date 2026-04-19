@@ -1,14 +1,8 @@
 'use client';
-
 import { useCart } from "@/app/context/CartContext";
 import { OrderTableType } from "@/types/data";
 import { toTimestamp } from "@/utils/functions/generate.utils";
 import { useEffect, useState } from "react";
-
-
-
-
-
 
 export default function StaffReservationPage() {
     const [data, setData] = useState<OrderTableType[]>([]);
