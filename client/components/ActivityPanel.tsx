@@ -4,6 +4,8 @@ import { LogType } from "@/types/data";
 import { motion } from "framer-motion";
 import moment from "moment";
 import { useEffect } from "react";
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 interface Props {
   activities: LogType[];
@@ -17,14 +19,14 @@ export default function ActivityPanel({ activities }: Props) {
 
   return (
     <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-      <h2 className="mb-4 font-semibold">🔔 Hoạt động realtime</h2>
+      <h2 className="mb-4 font-semibold">🔔 Hoạt động</h2>
 
-      <div className="space-y-3">
+      <SimpleBar style={{ maxHeight: 400 }}>
         {activities.map((act) => (
           <motion.div
             key={act.id}
             whileHover={{ scale: 1.02 }}
-            className="p-3 rounded-lg border border-white/10 bg-[#111]"
+            className="p-3 mb-2 rounded-lg border border-white/10 bg-[#111]"
           >
             <p className="text-sm">
               <span className="font-semibold text-blue-400">
@@ -38,7 +40,7 @@ export default function ActivityPanel({ activities }: Props) {
             </p>
           </motion.div>
         ))}
-      </div>
+      </SimpleBar>
     </div>
   );
 }

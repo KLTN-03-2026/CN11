@@ -13,9 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Table.belongsTo(models.BankHistory, { foreignKey: "codetable", targetKey: "codetable", as: "table" });
       Table.belongsTo(models.Order, { foreignKey: "codetable", targetKey: "codetable", as: "order_table" });
-      Table.belongsTo(models.TableStatus,{foreignKey: "codetable",targetKey:"codetable", sourceKey: "codetable",as: "table_status"});
-      Table.belongsTo(models.Floor, { foreignKey: "codefloor", targetKey:"codefloor",sourceKey: "codefloor", as: "floor_table" });
+      Table.belongsTo(models.TableStatus,{foreignKey: "codetable",targetKey:"codetable",as: "table_status"});
+      Table.belongsTo(models.Floor, { foreignKey: "codefloor", targetKey:"codefloor", as: "floor_table" });
       Table.belongsTo(models.OrderTableStatus, { foreignKey:"codetable",targetKey:"codetable",as:"order_table_name"});
+      Table.belongsTo(models.NoteWaiter, { foreignKey: "codetable", targetKey:"codetable", as: "note_waiter" });
     }
   }
   Table.init({

@@ -112,6 +112,32 @@ class AuthController {
         }
     }
 
+    async getNoteWaiters(req, res) {
+        try {
+            
+            const responsive = await services.getNoteWaiters();
+            return res.status(200).json(responsive);
+        } catch (error) {
+            return res.status(500).json({
+                error: -1,
+                message: "Interal Server Error"
+            })
+        }
+    }
+
+    async createNoteWaiters(req, res) {
+        try {
+            
+            const responsive = await services.createNoteWaiter(req.body);
+            return res.status(200).json(responsive);
+        } catch (error) {
+            return res.status(500).json({
+                error: -1,
+                message: "Interal Server Error"
+            })
+        }
+    }
+
 
 }
 

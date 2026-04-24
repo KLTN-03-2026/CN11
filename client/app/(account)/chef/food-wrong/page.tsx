@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
+import StatusCard from "@/components/utils/StatusCard";
 import { useEffect, useState } from "react";
 
 
@@ -76,30 +77,28 @@ export default function ChefErrorPage() {
   };
 
 
-  const total = data.length;
-  const errorCount = data.filter((i) => i.status === "error").length;
 
   return (
     <div className="p-6 text-white space-y-6">
 
    
       <h1 className="text-2xl font-semibold text-red-400">
-        ❌ Món lỗi trong bếp
+         Món lỗi trong bếp
       </h1>
 
       
       <input
         placeholder="Tìm món lỗi..."
         value={search}
+        spellCheck={false}
         onChange={(e) => setSearch(e.target.value)}
-        className="p-2 bg-[#111] border border-white/10 rounded w-full md:w-1/3"
+        className="p-2 outline-none bg-[#111] border border-white/10 rounded w-full md:w-1/3"
       />
 
    
       <div className="grid md:grid-cols-3 gap-4">
-        <Stat title="Tổng lỗi" value={total} color="red" />
-        <Stat title="Đang lỗi" value={errorCount} color="yellow" />
-        <Stat title="Đã xử lý" value={total - errorCount} color="green" />
+        <StatusCard title="Tổng lỗi" value={23} />
+        <StatusCard title="Đã xử lý" value={13} />
       </div>
 
      
@@ -226,27 +225,3 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 
-function Stat({
-  title,
-  value,
-  color,
-}: {
-  title: string;
-  value: number;
-  color: "red" | "yellow" | "green";
-}) {
-  const map = {
-    red: "text-red-400",
-    yellow: "text-yellow-400",
-    green: "text-green-400",
-  };
-
-  return (
-    <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-      <div className="text-gray-400 text-sm">{title}</div>
-      <div className={`text-xl font-semibold ${map[color]}`}>
-        {value}
-      </div>
-    </div>
-  );
-}

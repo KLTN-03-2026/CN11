@@ -189,7 +189,7 @@ class AuthServices {
                 const responsive = await db.User.findAll({
                     where: { rolecode },
                     raw: true,
-                    attributes: ["codeuser","username","phone"]
+                    attributes: ["codeuser", "username", "phone"]
                 })
                 return reslove({
                     error: responsive ? 0 : 1,
@@ -223,7 +223,7 @@ class AuthServices {
             try {
                 const responsive = await db.Role.findAll({
                     raw: true,
-                    attributes:["value", "code"]
+                    attributes: ["value", "code"]
                 });
 
                 return reslove({
@@ -237,6 +237,68 @@ class AuthServices {
             }
         })
     }
+
+    getNoteWaiters() {
+        return new Promise(async (reslove, reject) => {
+            try {
+                const responsive = await db.NoteWaiter.findAll({
+                    raw: true,
+                    order: [["createdAt", "DESC"]],
+                    include: [
+                        { model: db.User, as: "user", attributes: ["username"] },
+                        { model: db.Table, as: "table", attributes: ["name"] },
+                        { model: db.HourService, as: "hourService", attributes: ["hour"] },
+                    ],
+                    nest: true
+                });
+
+                return reslove({
+                    error: responsive ? 0 : 1,
+                    message: responsive ? "Lấy ghi chú phục vụ thành công." : "Lấy ghi chú phục vụ không thành công !",
+                    data: responsive
+                });
+
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+
+    createNoteWaiter({ codeuser, codetable, codehour, des, date = "Có lịch trực" }) {
+        return new Promise(async (reslove, reject) => {
+            try {
+                const responsive = await db.NoteWaiter.create({
+                    codeuser,
+                    codetable,
+                    codehour,
+                    des,
+                    date,
+                    codenote: generateCode(12)
+                });
+
+                const dataNotes = await db.NoteWaiter.findAll({
+                    raw: true,
+                    order: [["createdAt", "DESC"]],
+                    include: [
+                        { model: db.User, as: "user", attributes: ["username"] },
+                        { model: db.Table, as: "table", attributes: ["name"] },
+                        { model: db.HourService, as: "hourService", attributes: ["hour"] },
+                    ],
+                    nest: true
+                });
+
+                return reslove({
+                    error: responsive ? 0 : 1,
+                    message: responsive ? "Tạo ghi chú phục vụ thành công." : "Tạo ghi chú phục vụ không thành công !",
+                    data: dataNotes
+                });
+
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+
 }
 
 module.exports = new AuthServices();

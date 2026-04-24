@@ -13,5 +13,7 @@ router.put("/update-email", controller.updateEmail);
 router.put("/update-avatar", controller.updateAvatar);
 router.post("/register", controller.register);
 router.post("/login", controller.login);
+router.get("/get-note-waiters", controller.getNoteWaiters);
+router.post("/create-note-waiter", controller.createNoteWaiters);
 
 module.exports = router

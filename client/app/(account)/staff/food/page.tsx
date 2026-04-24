@@ -1,5 +1,6 @@
 'use client';
 
+import AssignChefModal from "@/components/AssignChefModal";
 import { useState } from "react";
 
 
@@ -52,9 +53,10 @@ const statusLabel = {
 
 export default function StaffOrderQRPage() {
     const [orders, setOrders] = useState<Order[]>(mockOrders);
-
+    const [open,setOpen] = useState<boolean>(false);
 
     const updateStatus = (id: number) => {
+        setOpen(true);
         setOrders((prev) =>
             prev.map((o) => {
                 if (o.id !== id) return o;
@@ -67,19 +69,19 @@ export default function StaffOrderQRPage() {
         );
     };
 
-   
+
     const getTotal = (items: OrderItem[]) =>
         items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
     return (
         <div className="p-6 text-white space-y-6">
 
-            
+
             <h1 className="text-xl font-semibold">
                 📲 Đơn hàng từ QR (Tại bàn)
             </h1>
 
-            
+
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
 
                 {orders.map((order) => (
@@ -88,7 +90,7 @@ export default function StaffOrderQRPage() {
                         className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-4 hover:bg-[#111] transition"
                     >
 
-                        
+
                         <div className="flex justify-between items-center">
                             <div>
                                 <div className="text-lg font-semibold text-pink-400">
@@ -99,7 +101,7 @@ export default function StaffOrderQRPage() {
                                 </div>
                             </div>
 
-                            
+
                             <span
                                 className={`px-3 py-1 text-xs rounded-full
                   ${order.status === "new"
@@ -114,7 +116,7 @@ export default function StaffOrderQRPage() {
                             </span>
                         </div>
 
-                    
+
                         <div className="space-y-2">
                             {order.items.map((item, i) => (
                                 <div
@@ -131,7 +133,7 @@ export default function StaffOrderQRPage() {
                             ))}
                         </div>
 
-                
+
                         <div className="flex justify-between font-medium">
                             <span>Tổng</span>
                             <span className="text-green-400">
@@ -139,7 +141,7 @@ export default function StaffOrderQRPage() {
                             </span>
                         </div>
 
-                    
+
                         {order.status !== "done" && (
                             <button
                                 onClick={() => updateStatus(order.id)}
@@ -159,6 +161,22 @@ export default function StaffOrderQRPage() {
 
                     </div>
                 ))}
+
+                <AssignChefModal
+                    isOpen={open}
+                    onClose={() => setOpen(false)}
+                    chefs={[
+                        { id: "1", name: "Chef A", isAvailable: true },
+                        { id: "2", name: "Chef B", isAvailable: true },
+                    ]}
+                    dishes={[
+                        { id: "d1", name: "Bò lúc lắc", quantity: 2 },
+                        { id: "d2", name: "Lẩu thái", quantity: 1 },
+                    ]}
+                    onAssign={async (data) => {
+                        console.log("Assign:", data);
+                    }}
+                />
 
                 {orders.length === 0 && (
                     <div className="text-gray-400">

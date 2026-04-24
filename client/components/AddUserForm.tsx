@@ -38,7 +38,7 @@ export default function AddUserForm({ onAdd }: Props) {
         phone,
         role: {
           code: role,
-          value: role === "R1" ? "Admin" : role === "R2" ? "Chef" : role === "R3" ? "Customer" : "Staff"
+          value: role === "R1" ? "Admin" : role === "R2" ? "Chef" : role === "R3" ? "Customer" : role === "R5" ? "Waiter" : "Staff"
         },
         tag: "#",
         updatedAt: "",
@@ -63,32 +63,33 @@ export default function AddUserForm({ onAdd }: Props) {
         placeholder="Họ và tên"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="w-full p-2 bg-[#111] border border-white/10 rounded"
+        className="w-full p-2 outline-none bg-[#111] border border-white/10 rounded"
       />
 
       <input
         placeholder="Số điện thoại"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        className="w-full p-2 bg-[#111] border border-white/10 rounded"
+        className="w-full p-2 outline-none bg-[#111] border border-white/10 rounded"
       />
 
       <input
         placeholder="Mật khẩu"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="w-full p-2 bg-[#111] border border-white/10 rounded"
+        className="w-full p-2 outline-none bg-[#111] border border-white/10 rounded"
       />
 
       <select
         value={role}
         onChange={(e) => setRole(e.target.value)}
-        className="w-full p-2 bg-[#111] border border-white/10 rounded"
+        className="w-full p-2 outline-none bg-[#111] border border-white/10 rounded"
       >
         <option value="R1">Admin</option>
         <option value="R4">Staff</option>
         <option value="R2">Chef</option>
         <option value="R3">Customer</option>
+        <option value="R5">Waiter</option>
       </select>
 
       <button

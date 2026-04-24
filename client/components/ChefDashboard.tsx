@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
+import StatusCard from "@/components/utils/StatusCard";
 import { useEffect, useState } from "react";
 
 
@@ -51,18 +52,16 @@ export default function ChefDashboard() {
 
     return (
         <div className="p-6 text-white space-y-6">
-
             
             <h1 className="text-2xl font-semibold">
-                👨‍🍳 Dashboard Bếp
+                Dashboard Bếp
             </h1>
 
-         
             <div className="grid md:grid-cols-4 gap-4">
-                <Stat title="Chờ nấu" value={pending.length} color="yellow" />
-                <Stat title="Đang nấu" value={cooking.length} color="blue" />
-                <Stat title="Hoàn thành" value={done.length} color="green" />
-                <Stat title="Tổng đơn" value={orders.length} color="pink" />
+                <StatusCard title="Chờ nấu" value={2} /> 
+                <StatusCard title="Đang nấu" value={2} />
+                <StatusCard title="Hoàn thành" value={1} />
+                <StatusCard title="Tổng đơn" value={4} />
             </div>
 
            
@@ -149,32 +148,6 @@ function Column({
                     </div>
                 );
             })}
-        </div>
-    );
-}
-
-function Stat({
-    title,
-    value,
-    color,
-}: {
-    title: string;
-    value: number;
-    color: "yellow" | "blue" | "green" | "pink";
-}) {
-    const map = {
-        yellow: "text-yellow-400",
-        blue: "text-blue-400",
-        green: "text-green-400",
-        pink: "text-pink-400",
-    };
-
-    return (
-        <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-            <div className="text-sm text-gray-400">{title}</div>
-            <div className={`text-2xl font-semibold ${map[color]}`}>
-                {value}
-            </div>
         </div>
     );
 }

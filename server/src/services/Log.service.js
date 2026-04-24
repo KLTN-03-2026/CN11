@@ -120,6 +120,45 @@ class LogService {
             }
         })
     }
+
+    getTables() {
+        return new Promise(async (relsove, reject) => {
+            try {
+                const responsive = await db.Table.findAll({
+                    where: { active: true },
+                    order: [['id', 'ASC']],
+                })
+                return relsove({
+                    error: responsive ? 0 : 1,
+                    message: responsive ? "Lấy thành công !" : "Lấy không thành công !.",
+                    data: responsive
+                })
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+
+    getWaiters() {
+        return new Promise(async (relsove, reject) => {
+            try {
+                const responsive = await db.User.findAll({
+                    where: { rolecode: "R5" },
+                    order: [['id', 'ASC']],
+                    attributes: {
+                        exclude: ["password", "createdAt", "updatedAt"]
+                    }
+                })
+                return relsove({
+                    error: responsive ? 0 : 1,
+                    message: responsive ? "Lấy thành công !" : "Lấy không thành công !.",
+                    data: responsive
+                })
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
 }
 
 module.exports = new LogService();

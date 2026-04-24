@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { icons } from "@/utils/icons/icons.utils"
 
-const { LayoutDashboard, Package, Utensils, CreditCard, QrCode, Bell, ShieldCheck } = icons;
+const { Gauge, Package, Utensils, CreditCard, QrCode, Bell, ShieldCheck } = icons;
 
 
 export default function AdminSidebar() {
@@ -11,17 +11,14 @@ export default function AdminSidebar() {
     return (
 
         <div className="w-64 bg-black/40 backdrop-blur-xl border-r border-zinc-800">
-
             <div className="p-6 text-xl font-bold">
-
-                SmartOps F&B
-
+                Staff Panel
             </div>
 
             <nav className="flex flex-col gap-3 p-4">
 
                 <Link className="sidebar-item" href="/staff/dashboard">
-                    <LayoutDashboard size={18} /> Dashboard
+                    <Gauge size={18} /> Tổng quan
                 </Link>
 
                 <Link className="sidebar-item" href="/staff/qr">
@@ -48,7 +45,7 @@ export default function AdminSidebar() {
 
                 <Link className="sidebar-item" href="/staff/order">
                     <Package size={18} /> Đơn hàng
-                </Link> 
+                </Link>
             </nav>
 
         </div>

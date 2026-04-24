@@ -65,6 +65,32 @@ class LogController {
             })
         }
     }
+
+    async getTables(req, res) {
+        try {
+
+            const responsive = await services.getTables();
+            return res.status(200).json(responsive);
+        } catch (error) {
+            return res.status(500).json({
+                error: -1,
+                message: "Interal Server Error"
+            })
+        }
+    }
+
+    async getWaiters(req, res) {
+        try {
+
+            const responsive = await services.getWaiters();
+            return res.status(200).json(responsive);
+        } catch (error) {
+            return res.status(500).json({
+                error: -1,
+                message: "Interal Server Error"
+            })
+        }
+    }
 }
 
 module.exports = new LogController();

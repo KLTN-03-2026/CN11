@@ -40,6 +40,27 @@ export interface Contact {
   updatedAt: string;
 }
 
+export interface NoteWaiter {
+  id: number;
+  codenote: string;
+  codeuser: string;
+  codehour: string;
+  codetable: string;
+  date: string;
+  des: string;
+  createdAt: string;
+  updatedAt: string;
+  user: {
+    username: string;
+  };
+  table: {
+    name: string;
+  };
+  hourService: {
+    hour: string;
+  };
+}
+
 export interface DataContact {
   error: number;
   message: string;
@@ -283,6 +304,17 @@ export interface HourType {
   hour: string;
   active: boolean;
   codehour: string;
+}
+
+export interface TableType {
+  id: number;
+  codetable: string;
+  codefloor: string;
+  name: string;
+  url: string;
+  active: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface OrderTableType {

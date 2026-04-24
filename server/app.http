@@ -67,6 +67,21 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:5000/api/auth/create-note-waiter
+Content-Type: application/json
+
+{
+    "codeuser":"QMFWMX2M",
+    "codetable":"T05",
+    "codehour":"19h",
+    "des":"Có lịch trực ngày 5/3/2026 tại bàn T05 vào lúc 18h"
+}
+
+###
+GET http://localhost:5000/api/auth/get-note-waiters
+
+
+###
 POST http://localhost:5000/api/auth/register 
 Content-Type: application/json
 
@@ -177,6 +192,12 @@ GET http://localhost:5000/api/log/floors-table/F01/20h
 
 ###
 GET http://localhost:5000/api/log/floors-table/F02
+
+###
+GET http://localhost:5000/api/log/tables
+
+###
+GET http://localhost:5000/api/log/waiters
 
 ###
 GET http://localhost:5000/api/cate/get-categories

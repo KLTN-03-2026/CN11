@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { icons } from "@/utils/icons/icons.utils"
-const { LayoutDashboard, UserRoundCog, ShieldCheck, Utensils, UserPen, Settings, TicketPercent, CreditCard, BellPlus } = icons;
+const { Gauge, UserRoundCog, ShieldCheck, Utensils, UserPen, Settings, TicketPercent, CreditCard, BellPlus } = icons;
 
 
 export default function AdminSidebar() {
@@ -20,7 +20,7 @@ export default function AdminSidebar() {
             <nav className="flex flex-col gap-3 p-4">
 
                 <Link className="sidebar-item" href="/admin/dashboard">
-                    <LayoutDashboard size={18} /> Dashboard
+                    <Gauge size={18} /> Tổng quan
                 </Link>
 
                 <Link className="sidebar-item" href="/admin/account">

@@ -22,14 +22,18 @@ class CountServices {
     accountsStaff() {
         return new Promise(async (reslove, reject) => {
             try {
-                const responsive = await db.User.findAndCountAll({
+                const responsive1 = await db.User.findAndCountAll({
                     where: { rolecode: "R4" }
+                });
+
+                const responsive2 = await db.User.findAndCountAll({
+                    where: { rolecode: "R5" }
                 });
 
                 return reslove({
                     error: 0,
                     message: "Lấy thành công !",
-                    data: responsive.count
+                    data: responsive1.count + responsive2.count
                 })
 
             } catch (error) {

@@ -106,6 +106,9 @@ export default function LoginForm() {
                         case "R4":
                             router.push("/staff/dashboard");
                             break;
+                        case "R5":
+                            router.push("/waiter/dashboard");
+                            break;
                         default:
                             router.push("/login");
                     }

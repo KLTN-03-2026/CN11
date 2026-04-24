@@ -3,6 +3,8 @@
 import { DataBellToUser } from "@/types/data";
 import { useEffect, useState } from "react";
 import moment from "moment";
+import SimpleBar from 'simplebar-react'
+import 'simplebar/dist/simplebar.min.css'
 
 
 
@@ -77,15 +79,14 @@ export default function StaffNotificationPage() {
         placeholder="Tìm thông báo..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full p-2 bg-[#111] border border-white/10 rounded"
+        className="w-full outline-none p-2 bg-[#111] border border-white/10 rounded"
       />
-      <div className="space-y-3 max-h-125 overflow-y-auto">
-
+      <SimpleBar style={{ maxHeight: 500 }}>
         {filtered.map((n) => (
           <div
             key={n.id}
             onClick={() => openModal(n)}
-            className={`p-4 rounded-xl border cursor-pointer transition
+            className={`p-4 mb-4 rounded-xl border cursor-pointer transition
               ${n?.status
                 ? "bg-white/5 border-white/10"
                 : "bg-linear-to-r from-[#111] to-[#1a1a1a] border-pink-500/30 shadow-lg"
@@ -122,7 +123,7 @@ export default function StaffNotificationPage() {
             )}
           </div>
         ))}
-      </div>
+      </SimpleBar>
 
 
       {selected && (

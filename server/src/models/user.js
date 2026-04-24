@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.AvatarLink,{foreignKey:"codeuser",targetKey:"codeuser",as:"avatar"})
       User.belongsTo(models.BankHistory, { foreignKey: "codeuser", targetKey: "codeuser", as: "user_bank" });
       User.belongsTo(models.Order, { foreignKey: "codeuser", targetKey: "codeuser", as: "order_user" });
+      User.belongsTo(models.NoteWaiter, { foreignKey: "codeuser", targetKey: "codeuser", as: "note_waiter" });
     }
   }
   User.init({

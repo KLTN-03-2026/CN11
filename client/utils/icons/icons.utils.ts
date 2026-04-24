@@ -13,6 +13,7 @@ import {
   CreditCard,
   BellPlus,
 } from "lucide-react";
+import { Gauge } from 'lucide-react';
 import { BsPhone } from "react-icons/bs";
 import { Flame, CheckCircle, Clock, AlertCircle } from "lucide-react";
 import {
@@ -27,6 +28,7 @@ import { IoReload } from "react-icons/io5";
 import { BiMailSend } from "react-icons/bi";
 export const icons = {
   IoReload,
+  Gauge,
   LayoutDashboard,
   BsPhone,
   Utensils,
