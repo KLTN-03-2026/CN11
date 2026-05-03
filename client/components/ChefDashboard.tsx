@@ -1,8 +1,12 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
+import { useCart } from "@/app/context/CartContext";
+import AddCookingTimeModal from "@/components/AddCookingTimeModal";
 import StatusCard from "@/components/utils/StatusCard";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import KitchenButton from "@/components/KittchenButton";
 
 
 type OrderStatus = "pending" | "cooking" | "done";
@@ -11,7 +15,7 @@ interface DishOrder {
     id: number;
     table: string;
     dish: string;
-    time: number; 
+    time: number;
     status: OrderStatus;
 }
 
@@ -27,6 +31,9 @@ const mockOrders: DishOrder[] = [
 export default function ChefDashboard() {
     const [orders, setOrders] = useState<DishOrder[]>(mockOrders);
     const [now, setNow] = useState<number>(0);
+    const [open, setOpen] = useState<boolean>(false);
+    const [isAlert, setIsAlert] = useState<boolean>(true);
+    const { messageApi } = useCart();
 
     useEffect(() => {
         setNow(Date.now());
@@ -45,56 +52,103 @@ export default function ChefDashboard() {
         );
     };
 
- 
+    const dishes = [
+        { id: "1", name: "Sushi cá hồi" },
+        { id: "2", name: "Ramen bò" },
+        { id: "3", name: "Tempura" },
+    ];
+
     const pending = orders.filter(o => o.status === "pending");
     const cooking = orders.filter(o => o.status === "cooking");
     const done = orders.filter(o => o.status === "done");
 
     return (
         <div className="p-6 text-white space-y-6">
-            
+
             <h1 className="text-2xl font-semibold">
-                Dashboard Bếp
+                Trang quản lý nhà hàng dành cho đầu bếp
             </h1>
 
             <div className="grid md:grid-cols-4 gap-4">
-                <StatusCard title="Chờ nấu" value={2} /> 
+                <StatusCard title="Chờ nấu" value={2} />
                 <StatusCard title="Đang nấu" value={2} />
                 <StatusCard title="Hoàn thành" value={1} />
                 <StatusCard title="Tổng đơn" value={4} />
             </div>
 
-           
+            <div className="flex">
+
+                <motion.button
+                    onClick={() => {
+                        setIsAlert(false);
+                        setOpen(true);
+                    }}
+
+
+                    whileHover={{
+                        x: [0, -2, 2, -2, 2, 0],
+                        transition: { duration: 0.3 },
+                    }}
+
+
+                    animate={
+                        isAlert
+                            ? {
+                                x: [0, -3, 3, -3, 3, 0],
+                            }
+                            : {}
+                    }
+
+                    transition={
+                        isAlert
+                            ? {
+                                duration: 0.5,
+                                repeat: Infinity,
+                                repeatDelay: 2,
+                            }
+                            : {}
+                    }
+
+                    className="px-5 py-2 cursor-pointer rounded-xl bg-linear-to-r from-blue-500 to-indigo-500 text-white font-medium shadow-lg hover:opacity-90 transition"
+                >
+                    + Thêm thời gian
+                </motion.button>
+                <AddCookingTimeModal
+                    isOpen={open}
+                    onClose={() => setOpen(false)}
+                    dishes={dishes}
+                    onSubmit={(data) => {
+                        messageApi.success("Data submited: " + JSON.stringify(data));
+                    }}
+                />
+            </div>
+
             <div className="grid md:grid-cols-3 gap-5">
 
-           
+
                 <Column title="🔥 Đơn mới" data={pending} now={now}>
                     {(o) => (
-                        <button
-                            onClick={() => updateStatus(o.id, "cooking")}
-                            className="btn-yellow"
-                        >
+                        <KitchenButton onClick={() => updateStatus(o.id, "cooking")} status="new">
                             Bắt đầu
-                        </button>
+                        </KitchenButton>
                     )}
                 </Column>
 
-              
+
                 <Column title="👨‍🍳 Đang nấu" data={cooking} now={now}>
                     {(o) => (
-                        <button
-                            onClick={() => updateStatus(o.id, "done")}
-                            className="btn-green"
-                        >
+                        <KitchenButton onClick={() => updateStatus(o.id, "done")} status="cooking">
                             Hoàn thành
-                        </button>
+                        </KitchenButton>
                     )}
                 </Column>
 
-             
+
                 <Column title="✅ Hoàn thành" data={done} now={now}>
                     {() => (
-                        <span className="text-gray-400 text-sm">✔️ Xong</span>
+                         <KitchenButton status="done">
+                           ✔️ Đã xong
+                        </KitchenButton>
                     )}
                 </Column>
 

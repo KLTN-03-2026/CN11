@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/app/context/CartContext";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   title: "SmartDine - Nhà hàng Trung Kiên",
   description: "This website created by Nguyễn Trung Kiên",
 };
+
 
 export default function RootLayout({
   children,

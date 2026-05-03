@@ -11,6 +11,7 @@ const initRouteVoucher = require("./voucher.route");
 const initRouteBank = require("./bank.route");
 const initRouteBell = require("./bell.route");
 const initRouteOrder = require("./order.route");
+const initRouteCook = require("./cook.route");
 
 const initRoute = (app) => {
     app.use("/api/email", initRouteEmail);
@@ -19,6 +20,7 @@ const initRoute = (app) => {
     app.use("/api/log", initRouteLog);
     app.use("/api/auth", initRouteAuth);
     app.use("/api/count", initRouteCount);
+    app.use("/api/cook", initRouteCook);
     app.use("/api/user", initRouteUser);
     app.use("/api/bank", initRouteBank);
     app.use("/api/bell", initRouteBell);

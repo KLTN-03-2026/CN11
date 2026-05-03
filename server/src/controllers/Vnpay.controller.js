@@ -1,6 +1,20 @@
 
 const vnpConfig = require("../config/VNPAY.config");
-const { sortObject, createSecureHash } = require("../utils/vnpay.util");
+const { createSecureHash } = require("../utils/vnpay.util");
+const crypto = require("crypto");
+const qs = require("qs");
+const moment = require("moment");
+
+function sortObject(obj) {
+    const sorted = {};
+    const keys = Object.keys(obj).sort();
+
+    keys.forEach((key) => {
+        sorted[key] = obj[key];
+    });
+
+    return sorted;
+}
 
 exports.createPayment = async (req, res) => {
     try {
@@ -39,7 +53,7 @@ exports.createPayment = async (req, res) => {
             vnp_TxnRef: orderId,
             vnp_OrderInfo: `Thanh_toan_don_hang_${orderId}`,
             vnp_OrderType: "other",
-            vnp_Amount: (amount * 100).toString(),
+            vnp_Amount: (+amount * 100).toString(),
             vnp_ReturnUrl: vnpConfig.returnUrl,
             vnp_IpAddr: req.ip || "127.0.0.1",
             vnp_CreateDate: createDate
@@ -57,10 +71,61 @@ exports.createPayment = async (req, res) => {
         const paymentUrl =
             `${vnpConfig.vnpUrl}?${signData}&vnp_SecureHash=${secureHash}`
 
-        res.json({ paymentUrl })
+        // res.json({ paymentUrl })
+
+        console.log(paymentUrl)
 
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: "Server error" })
     }
+
+
 }
+
+
+// exports.createPayment = (req, res) => {
+//     const ipAddr = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+
+//     const tmnCode = vnpConfig.tmnCode;
+//     const secretKey = vnpConfig.secretKey;
+//     const vnpUrl = vnpConfig.vnpUrl;
+//     const returnUrl = vnpConfig.returnUrl;
+
+//     const date = new Date();
+
+//     const createDate = moment(date).format("YYYYMMDDHHmmss");
+//     const orderId = moment(date).format("HHmmss");
+
+//     const amount = req.body.amount * 100;
+
+//     let vnp_Params = {
+//         vnp_Version: "2.1.0",
+//         vnp_Command: "pay",
+//         vnp_TmnCode: tmnCode,
+//         vnp_Locale: "vn",
+//         vnp_CurrCode: "VND",
+//         vnp_TxnRef: orderId,
+//         vnp_OrderInfo: "Thanh toán đơn hàng",
+//         vnp_OrderType: "other",
+//         vnp_Amount: amount,
+//         vnp_ReturnUrl: returnUrl,
+//         vnp_IpAddr: ipAddr,
+//         vnp_CreateDate: createDate,
+//     };
+
+//     vnp_Params = sortObject(vnp_Params);
+
+//     const signData = qs.stringify(vnp_Params, { encode: false });
+
+//     const hmac = crypto.createHmac("sha512", secretKey);
+//     const signed = hmac.update(signData).digest("hex");
+
+//     vnp_Params["vnp_SecureHash"] = signed;
+
+//     const paymentUrl =
+//         vnpUrl + "?" + qs.stringify(vnp_Params, { encode: false });
+
+//     res.json({ paymentUrl });
+// };
+
