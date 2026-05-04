@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import { useRouter } from "next/navigation";
-import OrderStatusPage from "@/app/orderstatus/page";
+
 
 type Item = {
     id: string;
@@ -109,16 +109,16 @@ export default function CheckoutMobile() {
 
     return (
         <div className="min-h-screen bg-black flex justify-center">
-            {/* Container mobile */}
+           
             <div className="w-full max-w-105 text-white pb-28">
 
-                {/* Header */}
+                
                 <div className="p-4 border-b border-gray-800 flex items-center gap-3">
-                    <span className="text-xl">←</span>
+                    <span className="text-xl cursor-pointer" onClick={()=>router.back()}>←</span>
                     <h1 className="font-semibold">Xác nhận đơn hàng</h1>
                 </div>
 
-                {/* Nhận tại quầy */}
+               
                 <div className="p-4 border-b border-gray-800">
                     <p className="text-sm text-gray-400">Hình thức</p>
                     <p className="font-medium text-green-400">
@@ -126,13 +126,13 @@ export default function CheckoutMobile() {
                     </p>
                 </div>
 
-                {/* Thời gian */}
+              
                 <div className="p-4 border-b border-gray-800">
                     <p className="text-sm text-gray-400">Thời gian nhận</p>
                     <p>~ 15 - 20 phút</p>
                 </div>
 
-                {/* Danh sách món */}
+              
                 <div className="p-4 border-b border-gray-800">
                     {items.map((item) => (
                         <div key={item.id} className="flex justify-between mb-2">
@@ -146,11 +146,11 @@ export default function CheckoutMobile() {
                     ))}
                 </div>
 
-                {/* Voucher */}
+               
                 <div className="p-4 border-b border-gray-800">
                     <p className="text-sm text-gray-400 mb-2">🎟️ Voucher</p>
 
-                    {/* Input */}
+                   
                     <div className="flex gap-2 mb-2">
                         <input
                             value={voucherInput}
@@ -179,12 +179,12 @@ export default function CheckoutMobile() {
                         </button>
                     </div>
 
-                    {/* Error */}
+                    
                     {error && (
                         <p className="text-red-400 text-xs mb-2">{error}</p>
                     )}
 
-                    {/* Selected */}
+                
                     {selectedVoucher && (
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
@@ -196,7 +196,6 @@ export default function CheckoutMobile() {
                         </motion.div>
                     )}
 
-                    {/* Button chọn */}
                     <button
                         onClick={() => setShowVoucher(true)}
                         className="cursor-pointer text-sm text-blue-500"
@@ -279,7 +278,7 @@ export default function CheckoutMobile() {
                                     })}
                                 </SimpleBar>
 
-                                {/* Close */}
+                               
                                 <button
                                     onClick={() => setShowVoucher(false)}
                                     className="w-full mt-4 py-3 bg-gray-700 rounded-xl text-white"
@@ -293,7 +292,7 @@ export default function CheckoutMobile() {
 
                 </div>
 
-                {/* Tip (giống app thật) */}
+               
                 <div className="p-4 border-b border-gray-800">
                     <p className="mb-2 text-sm text-gray-400">
                         Thưởng cho nhân viên
@@ -310,11 +309,11 @@ export default function CheckoutMobile() {
                     </div>
                 </div>
 
-                {/* Dụng cụ */}
+             
                 <div className="p-4 border-b border-gray-800 flex justify-between items-center">
                     <span>🍴 Lấy dụng cụ ăn</span>
 
-                    {/* Toggle xịn */}
+                  
                     <div
                         onClick={() => setUseUtensils(!useUtensils)}
                         className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer transition ${useUtensils ? "bg-green-500" : "bg-gray-600"
@@ -327,7 +326,7 @@ export default function CheckoutMobile() {
                     </div>
                 </div>
 
-                {/* Ghi chú */}
+               
                 <div className="p-4 border-b border-gray-800">
                     <p className="text-sm text-gray-400 mb-2">Ghi chú</p>
                     <textarea
@@ -338,7 +337,7 @@ export default function CheckoutMobile() {
                     />
                 </div>
 
-                {/* Thanh toán */}
+              
                 <div className="p-4 border-b border-gray-800">
                     <p className="text-sm text-gray-400 mb-2">
                         Phương thức thanh toán
